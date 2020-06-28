@@ -1,10 +1,10 @@
 package database
 
 import (
- "fmt"
-"github.com/jinzhu/gorm"
-_ "github.com/lib/pq"
-"go-to-do/src/models"
+	"fmt"
+	"github.com/jinzhu/gorm"
+	_ "github.com/lib/pq"
+	"go-to-do/src/models"
 )
 
 type DatabaseConfig struct {
