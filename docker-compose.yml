@@ -1,0 +1,23 @@
+ 
+version: "3.4"
+
+services:
+  postgres:
+    network_mode: host
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  todo:
+      network_mode: host
+      build: .
+      entrypoint: ./output.out
+      depends_on: 
+          - postgres
