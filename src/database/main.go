@@ -1,6 +1,7 @@
 package database
 
 import (
+	"log"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
@@ -35,13 +36,13 @@ func InitializeDatabase() *gorm.DB {
 	database, error := gorm.Open("postgres", urlString)
 
 	if error != nil {
-		fmt.Println("Database connection failed:", error)
+		log.Println("Database connection failed:", error)
 	}
 	
-	fmt.Println("Migrating models...")
+	log.Println("Migrating models...")
 	database.AutoMigrate(&models.Todo{})
 
-	fmt.Println("Successfully connected to database")
+	log.Println("Successfully connected to database")
 	
 	return database
 }

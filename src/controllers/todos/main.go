@@ -1,7 +1,7 @@
 package todos
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
@@ -17,7 +17,7 @@ func Create(c *gin.Context) {
 	err := database.Create(&todo).Error	
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	} 
@@ -33,7 +33,7 @@ func Delete(c *gin.Context) {
 	err := database.Where("id = ?", id).Delete(&todo).Error; 
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	} 
@@ -51,7 +51,7 @@ func Index(c *gin.Context) {
 	err := database.Find(&todos).Error
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
@@ -68,7 +68,7 @@ func Show(c *gin.Context) {
 	err := database.First(&todo, id).Error; 
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		c.AbortWithStatus(http.StatusNotFound)
 		return
 	}
@@ -84,7 +84,7 @@ func Update(c *gin.Context) {
 	err := database.First(&todo, id).Error; 
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		c.AbortWithStatus(http.StatusNotFound)
 		return
 	}
@@ -93,7 +93,7 @@ func Update(c *gin.Context) {
 	err = database.Save(&todo).Error
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
