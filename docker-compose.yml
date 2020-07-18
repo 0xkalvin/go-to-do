@@ -18,6 +18,6 @@ services:
   todo:
       network_mode: host
       build: .
-      entrypoint: ./output.out
+      entrypoint:  ["./main"]
       depends_on: 
           - postgres
